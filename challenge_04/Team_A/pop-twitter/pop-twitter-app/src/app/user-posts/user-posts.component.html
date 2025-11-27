@@ -1,0 +1,13 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Your Posts</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item *ngFor="let post of posts">
+        <h3 matLine>{{ post.post }}</h3>
+        <!-- <p matLine>Posted on: {{ post.createdAt | date:'medium' }}</p> -->
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

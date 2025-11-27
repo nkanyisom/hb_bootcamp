@@ -1,0 +1,23 @@
+.feed-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.post-card {
+  width: 100%;
+}
+
+mat-card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+mat-card-subtitle {
+  color: #666;
+}
+
+mat-card-content p {
+  font-size: 1rem;
+  line-height: 1.5;
+}
