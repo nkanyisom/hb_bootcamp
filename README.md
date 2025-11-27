@@ -25,6 +25,10 @@ The repository is organized into challenges, each containing Team A and Team B f
   - Team_A/
   - Team_B/
 
+## Bootcamp Challenges
+
+Details about each challenge will be added here as the bootcamp progresses.
+
 ## Getting Started
 
 Each challenge folder contains separate directories for Team A and Team B to work on their solutions independently.
