@@ -1,3 +1,3 @@
 # Team A
 
-**Developers:** 
+**Developers: Axel & Lesego** 
