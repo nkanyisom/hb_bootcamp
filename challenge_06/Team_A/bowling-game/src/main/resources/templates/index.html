@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Bowling Game - Multi Player (Standard Rules)</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .error-message {
+            color: red;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        .game-over-message {
+            color: blue;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        table.scoreboard {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+        }
+        .scoreboard th, .scoreboard td {
+            border: 1px solid #000;
+            padding: 5px;
+            text-align: center;
+            height: 40px;
+        }
+        .scoreboard thead th:first-child, .scoreboard tbody tr td:first-child {
+            width: 100px; /* Player Name Column */
+            font-weight: bold;
+        }
+        .scoreboard th:last-child, .scoreboard td:last-child {
+            width: 80px; /* Final Score Column */
+            background-color: #eee;
+        }
+        .frame-score {
+            font-size: 0.9em;
+            font-weight: bold;
+            display: block;
+            margin-top: 5px;
+        }
+        .frame-rolls {
+            font-size: 0.8em;
+            line-height: 1.2;
+        }
+        .frame-rolls-10 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2px;
+            justify-items: center;
+        }
+        .frame-rolls-10 > div {
+            min-width: 15px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1 class="center">🎳 Bowling Game Scorer - Multi Player (Standard Rules)</h1>
+
+    <div class="scoreboard-container">
+        <h2>📋 Scoreboard</h2>
+        <form method="post" action="/resetAll" style="float: right; margin-top: -40px;">
+            <button type="submit" style="background-color: #007bff;">Reset All Games</button>
+        </form>
+        <table class="scoreboard">
+            <thead>
+            <tr>
+                <th>Player</th>
+                <th th:each="frameNum : ${frameNumbers}" th:text="${frameNum}">Frame</th>
+                <th>Total</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="entry : ${playerGames}">
+                <td th:text="${entry.key}" th:style="${entry.key == player ? 'background-color: #e6f7ff;' : ''}">Player A</td>
+
+                <td th:each="frameNum : ${frameNumbers}">
+                    <div class="frame-rolls">
+                        <span th:text="${entry.value.getRollDisplay(frameNum, 1)}"></span> |
+                        <span th:text="${entry.value.getRollDisplay(frameNum, 2)}"></span>
+                    </div>
+                    <span class="frame-score" th:text="${entry.value.getFrameScore(frameNum)}"></span>
+                </td>
+
+                <td th:text="${entry.value.score()}">0</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="main-content">
+
+        <form method="get" action="/" style="margin-bottom: 10px;">
+            <label>Choose Player:</label>
+            <select name="player">
+                <option value="">-- Select Player --</option>
+                <option th:each="p : ${players}" th:value="${p}" th:text="${p}"
+                        th:selected="${p} == ${player}"></option>
+            </select>
+            <button type="submit">Switch</button>
+        </form>
+
+        <form method="get" action="/">
+            <label>Or Enter New Player:</label>
+            <input type="text" name="player" placeholder="Player name" required>
+            <button type="submit">Add Player</button>
+        </form>
+
+        <hr>
+
+        <div th:if="${player}">
+            <h2>
+                Player: <span th:text="${player}">[player]</span>
+                - Frame <span th:text="${currentFrame}">1</span>
+                <span th:if="${currentFrame > 10}" class="game-over-message"> (Game Over)</span>
+            </h2>
+
+            <div th:if="${error}" class="error-message">
+                Error: <span th:text="${error}"></span>
+            </div>
+
+            <div th:if="${isGameOver}" class="game-over-message">
+                GAME OVER! 🎉 Final Score: <span th:text="${game.score()}">0</span>
+                <form method="post" th:action="@{/reset}" style="display:inline;">
+                    <input type="hidden" name="player" th:value="${player}">
+                    <button type="submit" style="background-color: orange;">Start New Game</button>
+                </form>
+            </div>
+
+            <div th:unless="${isGameOver}" class="center">
+
+                <div th:if="${currentPlayerTurn != player}" class="error-message">
+                    Waiting for <strong th:text="${currentPlayerTurn}"></strong> to roll.
+                    Please select the current player to continue.
+                </div>
+
+                <div th:if="${currentPlayerTurn == player}">
+                    <p>Pins Remaining: <strong th:text="${pinsRemaining}">10</strong></p>
+                    <form method="post" action="/roll">
+                        <input type="hidden" name="player" th:value="${player}">
+                        <label>Pins Knocked (0 - <span th:text="${pinsRemaining}">10</span>):</label>
+                        <input type="number" name="pins" min="0" th:max="${pinsRemaining}" required>
+                        <button type="submit">Roll Ball</button>
+                    </form>
+                </div>
+
+            </div>
+
+            <hr>
+
+            <h3>Manage Players:</h3>
+            <ul>
+                <li th:each="p : ${players}">
+                    <a th:href="@{'/?player=' + ${p}}" th:text="${p}"></a>
+                    <form method="post" th:action="@{/delete}" style="display:inline; margin-left: 10px;">
+                        <input type="hidden" name="player" th:value="${p}">
+                        <button type="submit" style="background-color: #dc3545;">Delete Player</button>
+                    </form>
+                    <form method="post" th:action="@{/reset}" style="display:inline; margin-left: 5px;">
+                        <input type="hidden" name="player" th:value="${p}">
+                        <button type="submit" style="background-color: orange;">Reset Player Score</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+
+        <div th:unless="${player}" style="text-align: center; margin-top: 50px;">
+            <p>Please select an existing player or add a new player to start the game.</p>
+        </div>
+    </div>
+
+    <div class="footer guidelines">
+        <h2 class="center">Bowling Scorer Guide (Standard Rules) 🎳</h2>
+        <p>This game uses the **standard 10-frame bowling rule set**. The turn switches to the next player after a frame is completed (Strike in 1-9, or 2 rolls in 1-9/10).</p>
+
+        <h4>⭐ Strike ('X'):</h4>
+        <p>10 points plus the pins knocked down on the **next two rolls**. Advances to the next player immediately (frames 1-9).</p>
+
+        <h4>/ Spare ('/'):</h4>
+        <p>10 points plus the pins knocked down on the **next single roll**. Advances to the next player immediately after the two rolls are completed (frames 1-9).</p>
+
+        <h4>Open Frame:</h4>
+        <p>The score is the total pins knocked down in the two rolls. Advances to the next player immediately after the two rolls are completed.</p>
+    </div>
+</div>
+</body>
+</html>
