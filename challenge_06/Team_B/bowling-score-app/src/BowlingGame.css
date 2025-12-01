@@ -1,0 +1,63 @@
+.container {
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+select,
+input,
+button {
+  margin: 5px;
+  padding: 8px;
+  font-size: 16px;
+}
+
+button {
+  cursor: pointer;
+}
+
+.scorecard {
+  margin-top: 20px;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.scorecard th,
+.scorecard td {
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+.strike {
+  color: green;
+  font-weight: bold;
+}
+
+
+.spare {
+  color: blue;
+  font-weight: bold;
+}
+
+.frame-cell {
+  background-color: #f0f8ff;
+  /* light blue */
+  border: 1px solid #ccc;
+  padding: 10px;
+  text-align: center;
+}
+
+.frame-cell.strike {
+  background-color: #d4edda;
+  /* light green */
+}
+
+.frame-cell.spare {
+  background-color: #fff3cd;
+  /* light yellow */
+}
+
+.frame-cell.open {
+  background-color: #f8d7da;
+  /* light red */
+}
