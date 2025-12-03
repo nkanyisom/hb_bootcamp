@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="BowlingControllerTest" tests="8" skipped="0" failures="0" errors="0" timestamp="2025-12-03T07:56:31" hostname="FRG-MBP-KVYC924WGM" time="0.676">
+  <properties/>
+  <testcase name="testNewGameCreatesPlayer()" classname="BowlingControllerTest" time="0.548"/>
+  <testcase name="testGetScoreForExistingPlayer()" classname="BowlingControllerTest" time="0.069"/>
+  <testcase name="testGetFramesForExistingPlayer()" classname="BowlingControllerTest" time="0.042"/>
+  <testcase name="testRollInvalidPlayer()" classname="BowlingControllerTest" time="0.002"/>
+  <testcase name="testRollAccepted()" classname="BowlingControllerTest" time="0.003"/>
+  <testcase name="testGetScoreForUnknownPlayerReturnsZero()" classname="BowlingControllerTest" time="0.002"/>
+  <testcase name="testRollInvalidPinsReturns400()" classname="BowlingControllerTest" time="0.003"/>
+  <testcase name="testGetFramesReturnsEmptyListForUnknownPlayer()" classname="BowlingControllerTest" time="0.003"/>
+  <system-out><![CDATA[
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.5)
+
+2025-12-03T09:56:31.068+02:00  INFO 5673 --- [    Test worker] BowlingControllerTest                    : Starting BowlingControllerTest using Java 17.0.14 with PID 5673 (started by F5451132 in /Users/F5451132/Documents/projects/BootCamp)
+2025-12-03T09:56:31.069+02:00  INFO 5673 --- [    Test worker] BowlingControllerTest                    : No active profile set, falling back to 1 default profile: "default"
+2025-12-03T09:56:31.518+02:00  INFO 5673 --- [    Test worker] o.s.b.t.m.w.SpringBootMockServletContext : Initializing Spring TestDispatcherServlet ''
+2025-12-03T09:56:31.518+02:00  INFO 5673 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Initializing Servlet ''
+2025-12-03T09:56:31.519+02:00  INFO 5673 --- [    Test worker] o.s.t.web.servlet.TestDispatcherServlet  : Completed initialization in 1 ms
+2025-12-03T09:56:31.536+02:00  INFO 5673 --- [    Test worker] BowlingControllerTest                    : Started BowlingControllerTest in 0.689 seconds (process running for 1.352)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
