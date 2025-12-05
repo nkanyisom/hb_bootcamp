@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Code Review Report</title>
+<style>
+body { font-family: Arial, sans-serif; margin: 20px; }
+.header { background-color: #f0f0f0; padding: 20px; border-radius: 5px; }
+.score { font-size: 24px; font-weight: bold; color: #2e7d32; }
+.criteria { margin: 20px 0; }
+.criterion { margin: 10px 0; padding: 10px; border: 1px solid #ddd; border-radius: 3px; }
+.issues { color: #d32f2f; }
+.strengths { color: #2e7d32; }
+</style>
+</head>
+<body>
+<div class='header'>
+<h1>Team_B - Code Review Report</h1>
+<p><strong>Repository:</strong> https://github.com/nkanyisom/hb_bootcamp.git [challenge_01/Team_B]</p>
+<p><strong>Branch:</strong> main</p>
+<p><strong>Review Date:</strong> 2025-12-04T04:12:13.587202400</p>
+<p class='score'>Overall Score: 77.5/100</p>
+</div>
+<div class='criteria'>
+<h2>Criteria Breakdown</h2>
+<div class='criterion'>
+<strong>Algorithm & Data Structure Efficiency:</strong> 75/100 (15% weight)</div>
+<div class='criterion'>
+<strong>Testing & Verification:</strong> 80/100 (10% weight)</div>
+<div class='criterion'>
+<strong>Object-Oriented Design & Architecture:</strong> 65/100 (25% weight)</div>
+<div class='criterion'>
+<strong>Correctness & Completeness:</strong> 86/100 (30% weight)</div>
+<div class='criterion'>
+<strong>Code Quality & Readability:</strong> 81/100 (20% weight)</div>
+</div>
+<div class='strengths'>
+<h2>Top Strengths</h2>
+<ul>
+<li>Testing: 80/100 - Strong test coverage with comprehensive test cases</li>
+<li>Correctness: 86/100 - Demonstrates solid error handling practices</li>
+<li>Code Quality: 81/100 - Clean code with good naming conventions and organization</li>
+</ul>
+</div>
+<div>
+<h2>AI Insights & Recommendations</h2>
+<p>This is a small but reasonably structured Spring Boot application with clear separation of concerns, though it shows signs of being an early-stage project or demo with simplistic design and potential logical inconsistencies. The code quality is decent with proper use of modern Java and Lombok, but the OOP design score reveals fundamental issues with class responsibilities and naming.</p>
+<h3 style='color: #1976d2; margin-top: 20px;'>Recommendations</h3>
+<div style='background-color: #e3f2fd; padding: 15px; border-left: 4px solid #1976d2; border-radius: 3px;'>
+<ol style='margin: 0; padding-left: 20px;'>
+<li style='margin: 8px 0;'><strong>**Fix the critical logical/design flaw in the controller**: Rename the `checkAnagram` method and its endpoint (`/login`) to accurately reflect its actual functionality (e.g., `POST /anagram/check`), as the current implementation misleadingly uses a login endpoint for anagram checking.</strong></li>
+<li style='margin: 8px 0;'><strong>**Improve OOP design by defining proper abstractions**: Introduce interfaces for `AnagramService` and `GameService` to enable testing and follow dependency inversion, and refactor classes to have more than one method (average 1.0 indicates overly simplistic classes).</strong></li>
+<li style='margin: 8px 0;'><strong>**Enhance error handling and validation**: Add input validation (e.g., null/empty checks) in the controller and service methods, and implement proper exception handling with `@ControllerAdvice` instead of throwing generic `Exception` from the `starGame` method.</strong></li>
+</ol>
+</div>
+</div>
+</body>
+</html>
