@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Code Review Report</title>
+<style>
+body { font-family: Arial, sans-serif; margin: 20px; }
+.header { background-color: #f0f0f0; padding: 20px; border-radius: 5px; }
+.score { font-size: 24px; font-weight: bold; color: #2e7d32; }
+.criteria { margin: 20px 0; }
+.criterion { margin: 10px 0; padding: 10px; border: 1px solid #ddd; border-radius: 3px; }
+.issues { color: #d32f2f; }
+.strengths { color: #2e7d32; }
+</style>
+</head>
+<body>
+<div class='header'>
+<h1>Team_B - Code Review Report</h1>
+<p><strong>Repository:</strong> https://github.com/nkanyisom/hb_bootcamp.git [challenge_02/Team_B]</p>
+<p><strong>Branch:</strong> main</p>
+<p><strong>Review Date:</strong> 2025-12-04T04:14:39.668509100</p>
+<p class='score'>Overall Score: 72.6/100</p>
+</div>
+<div class='criteria'>
+<h2>Criteria Breakdown</h2>
+<div class='criterion'>
+<strong>Algorithm & Data Structure Efficiency:</strong> 48/100 (15% weight)</div>
+<div class='criterion'>
+<strong>Testing & Verification:</strong> 15/100 (10% weight)</div>
+<div class='criterion'>
+<strong>Object-Oriented Design & Architecture:</strong> 75/100 (25% weight)</div>
+<div class='criterion'>
+<strong>Correctness & Completeness:</strong> 87/100 (30% weight)</div>
+<div class='criterion'>
+<strong>Code Quality & Readability:</strong> 95/100 (20% weight)</div>
+</div>
+<div class='strengths'>
+<h2>Top Strengths</h2>
+<ul>
+<li>Correctness: 87/100 - Demonstrates solid error handling practices</li>
+<li>Code Quality: 95/100 - Clean code with good naming conventions and organization</li>
+</ul>
+</div>
+<div class='issues'>
+<h2>Critical Issues</h2>
+<ul>
+<li>Algorithm Efficiency: 48/100 - Inefficient algorithms or inappropriate data structure choices</li>
+<li>Testing: 15/100 - Minimal or missing test coverage for critical functionality</li>
+</ul>
+</div>
+<div>
+<h2>AI Insights & Recommendations</h2>
+<p>This is a small, single-class implementation that demonstrates basic functionality but lacks the structure and robustness expected of production-ready code. While the code quality is high in terms of readability and organization, the low scores in testing, algorithm efficiency, and OOP design indicate it's more of a beginner's learning project than a mature application. The monolithic class structure and static design severely limit reusability and testability.</p>
+<h3 style='color: #1976d2; margin-top: 20px;'>Recommendations</h3>
+<div style='background-color: #e3f2fd; padding: 15px; border-left: 4px solid #1976d2; border-radius: 3px;'>
+<ol style='margin: 0; padding-left: 20px;'>
+<li style='margin: 8px 0;'><strong>**Refactor into proper OOP design:** Break the monolithic static class into separate classes (e.g., `GameEngine`, `Player`, `GameBoard`, `Ship`) with clear responsibilities and instance-based state management to improve testability and adhere to OOP principles.</strong></li>
+<li style='margin: 8px 0;'><strong>**Implement unit tests:** Create a comprehensive test suite using JUnit, focusing on core logic like ship placement validation, hit/miss detection, and win condition checking, to dramatically increase the testing score from 15/100.</strong></li>
+<li style='margin: 8px 0;'><strong>**Decouple game logic from I/O:** Separate the console input/output (Scanner, System.out) from the core game logic by introducing interfaces (e.g., `InputProvider`, `Display`), making the code more modular and allowing for easier testing or future UI changes.</strong></li>
+</ol>
+</div>
+</div>
+</body>
+</html>
